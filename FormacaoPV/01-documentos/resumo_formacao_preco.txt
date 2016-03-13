@@ -1,0 +1,44 @@
+Custos e despesas variáveis: variam com a venda. Se existe venda há incidência
+	ex: custo da mercadoria, embalagens, etiquetas, impostos sobre a venda, comissões, etc
+Impostos
+	COFINS Contribuição para Financiamento da Seguridade Social
+	PIS Programa de Integração Social
+	IRPJ Imposto de Renda de Pessoa Jurídica
+	CSLL Contribuição Social sobre o Lucro Líquido
+	ICMS Imposto sobre Circulação de Mercadoria e Serviços
+	ISS Imposto sobre Serviço
+
+Custos ou despesas fixas: não variam em função da venda.
+	ex: aluguel, energia, água, salários fixos, encargos sociais
+Custos diretos: Podem ser atribuídos diretamente a mercadoria (fretes, impostos, seguros)
+Custos indiretos: São comuns a todas mercadorias
+Preço de aquisição: valor pago pelo produto mercadoria ou serviço
+Descontos obtidos: Descontos obtidos de terceiros em transações comerciais.
+Impostos recuperáveis: Recuperados quando a empresa efetivar a venda. (ex: ICMS no regime de tributação estadual pelo débito e crédito de ICMS)
+Impostos não recuperáveis: Deverão fazer parte da aquisição, pois não serão recuperados na venda e não serão repassados aos clientes.
+Fretes: Gastos com transportes de mercadorias
+Seguros: Valores pagos para evitar prejuízos
+Outras despesas incidentes na aquisição: gastos alfandegários, impostos sobre importação...
+Despesas financeiras: originadas de juros de empréstimos, juros de atraso de pagamento fornecedores, etc.
+Gasto: Sacrifício financeiro da empresa para obter produto ou serviço qualquer
+Investimento: Gasto ativado em função de sua vida útil ou de benefícios atribuíveis a futuros períosos.
+Custo: gasto relativo a consumo na operação
+Despesa: gasto destinato a fases de administração, vendas e financeira
+Desembolso: Pagamento resultante da aquisição do bem ou serviço
+Perda: Bem ou serviço consumido de forma anormal e involuntária
+
+Cáculo Percentual de custos fixos (CF):
+
+       custos fixos (média mensal) x 100
+%CF = ------------------------------------
+           vendas médias mensais
+
+Cálculo da taxa de manutenção:
+
+Cálculo do Preço de venda à vista
+
+            Custo da mercadoria vendida
+PVV = -----------------------------------------
+        (%Impostos + %Comissões + %CF + %Lucro)
+        (-------------------------------------)
+	(               100                   )   
