@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<h:head></h:head>
+	<h:body>
+	<div style="width:70%; display: inline-block">
+		<p:dataTable value="#{listagemProdutoMB.produtos}" var="produto">
+		<f:facet name="header">
+ 			teste
+        </f:facet>
+			<p:column headerText="Produto ">
+				<h:outputText value="#{produto.nome}" />
+			</p:column>
+			<p:column headerText="Custo">
+				<h:outputText value="#{produto.custo}" />
+			</p:column>
+			<p:column headerText="Impostos">
+				<h:outputText value="0.0" />
+			</p:column>
+			<p:column headerText="Comissões">
+				<h:outputText value="#{produto.comissao}" />
+			</p:column>
+			<p:column headerText="Lucro">
+				<h:outputText value="#{produto.lucro}" />
+			</p:column>
+			<p:column headerText="Preço de venda">
+				<h:outputText value="#{produto.custo}" />
+			</p:column>
+		</p:dataTable></div>
+		
+		
+	</h:body>
+</html>
