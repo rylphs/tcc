@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
 	<title>Formação PV</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -11,21 +12,32 @@
 </h:head>
 
 <h:body>
-		<div>
-			<h:form>
-				<p:menuButton value="Menu">
-					<p:menuitem value="Produtos"/>
-					<p:menuitem value="Caixa"/>
-					<p:menuitem value="Admin"/>
-					<p:menuitem value="Relatórios"/>
-				</p:menuButton>
-			</h:form>
-		</div>
+	<h:form>
+		<p:tabMenu activeIndex="#{param.i}" style="margin-bottom: 10px">
+			<p:menuitem value="Produtos" outcome="/produto/listagem"
+				icon="fa fa-cube">
+				<f:param name="i" value="0" />
+			</p:menuitem>
+			<p:menuitem value="Caixa" outcome="/produto/listagem"
+				icon="fa fa-money">
+				<f:param name="i" value="1" />
+			</p:menuitem>
+			<p:menuitem value="Admin" outcome="/produto/listagem"
+				icon="fa fa-cogs">
+				<f:param name="i" value="2" />
+			</p:menuitem>
+			<p:menuitem value="Relatórios" outcome="/produto/listagem"
+				icon="fa fa-line-chart">
+				<f:param name="i" value="3" />
+			</p:menuitem>
+		</p:tabMenu>
+	</h:form>
 
-	<div id="container">
-		<div id="content">
-			<ui:insert name="content"></ui:insert>
-		</div>
+	<div id="content">
+		<ui:insert name="content"></ui:insert>
+	</div>
+	<div id="messages">
+		<p:messages autoUpdate="true"></p:messages>
 	</div>
 </h:body>
 </html>
