@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="content">
+		<h:form>
+			<h1>Produtos</h1>
+			<p:dataTable value="#{listagemProdutoMB.produtos}" var="produto" >
+				<p:column headerText="Produto "><h:outputText value="#{produto.nome}" /></p:column>
+				<p:column headerText="Produto"><h:outputText value="#{produto.nome}" /></p:column>
+				<p:column headerText="Produto"><h:outputText value="#{produto.nome}" /></p:column>
+				<p:column headerText="Produto"><h:outputText value="#{produto.nome}" /></p:column>
+			</p:dataTable>
+		</h:form>
+		<p:commandButton value="Novo" onclick="PF('novo-produto').show()"></p:commandButton>
+
+		<p:dialog header="Novo Produto" widgetVar="novo-produto">
+			<h:form>
+				<h:panelGrid columns="2">
+					<p:outputLabel value="Nome:" />
+					<p:inputText size="50" />
+
+					<p:outputLabel value="Custo (R$): " />
+					<h:panelGrid columns="4" >
+						<p:inputText size="10"/>
+						<p:outputLabel value="Lucro (%): " />
+						<p:inputText size="10"/>
+					</h:panelGrid>
+					<p:outputLabel value="Comissão (%): " />
+					<p:inputText />
+				</h:panelGrid>
+				<p:commandButton value="Confirmar" />
+				<p:commandButton value="Cancelar" />
+			</h:form>
+		</p:dialog>
+	</ui:define>
+</ui:composition>
