@@ -3,18 +3,18 @@ package ferreira.couto.raphael.formacaopv.view;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import ferreira.couto.raphael.formacaopv.business.ProdutoBC;
 import ferreira.couto.raphael.formacaopv.entity.Produto;
+import ferreira.couto.raphael.formacaopv.enums.Funcionalidade;
+import ferreira.couto.raphael.formacaopv.exception.FormacaoPVException;
 
 @ViewScoped
 @ManagedBean
-public class ListagemProdutoMB {
+public class ListagemProdutoMB extends BaseMB{
 	private enum Action{ EDIT, NEW} 
 	
 	@Inject private ProdutoBC produtoBC;
@@ -37,9 +37,14 @@ public class ListagemProdutoMB {
 	}
 	
 	public void adicionarProduto(){
-		produtoBC.adicionarProduto(produtoSelecionado);
-		produtos = produtoBC.obterProdutos();
-		FacesContext.getCurrentInstance().addMessage("produto", new FacesMessage("Produto adicionado com sucesso!"));
+		try {
+			produtoBC.adicionarProduto(produtoSelecionado);
+			produtos = produtoBC.obterProdutos();
+			info(Funcionalidade.ADICAO_PRODUTO,"sucesso");
+		} catch (FormacaoPVException e) {
+			error(e.getFeature(), e.getStatus());
+		}
+		
 	}
 	
 	public void excluirProduto(){

@@ -29,6 +29,4 @@ public class ProdutoDAO {
 		em.persist(produto);
 		em.getTransaction().commit();
 	}
-	
-	
 }
