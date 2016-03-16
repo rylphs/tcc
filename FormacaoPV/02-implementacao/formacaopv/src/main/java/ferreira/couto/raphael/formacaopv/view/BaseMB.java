@@ -29,16 +29,16 @@ public abstract class BaseMB {
 	
 	protected void info(Funcionalidade feature, String status){
 		String message = getMessage(feature, status);
-		FacesContext.getCurrentInstance().addMessage("", new FacesMessage(SEVERITY_INFO, message, null));
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(SEVERITY_INFO, message, null));
 	}
 	
 	protected void error(Funcionalidade feature, String status){
 		String message = getMessage(feature, status);
-		FacesContext.getCurrentInstance().addMessage("", new FacesMessage(SEVERITY_ERROR, message, null));
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(SEVERITY_ERROR, message, null));
 	}
 	
 	protected void warn(Funcionalidade feature, String status){
 		String message = getMessage(feature, status);
-		FacesContext.getCurrentInstance().addMessage("", new FacesMessage(SEVERITY_WARN, message, null));
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(SEVERITY_WARN, message, null));
 	}
 }

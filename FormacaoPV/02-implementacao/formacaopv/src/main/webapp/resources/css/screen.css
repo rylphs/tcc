@@ -1,6 +1,6 @@
 html, body{
 	height: 100%;
-	background-color: #24394A; 
+	background-color: #F0F2F5; 
 }
 body{
 	margin-left: 10%;
@@ -31,11 +31,88 @@ body{
 
 .panel-wrapper{
 	padding: 10px;
-	background-image: url("http://localhost:8080/formacaopv/javax.faces.resource/images/ui-bg_diagonals-thick_15_0b3e6f_40x40.png.xhtml?ln=primefaces-dot-luv")
 }
 
 .panel-wrapper h1{
 	color: white;
 	text-align: center;
 	font-size: 16px;
+}
+
+@font-face{
+	font-family: "dosis";
+	src: url("#{resource['css/dosis-medium.otf']}");
+}
+
+.ui-widget{
+	font-family: dosis !important;
+	font-size: 14px;
+}
+
+.ui-tabmenu .ui-tabmenu-nav .ui-tabmenuitem a {
+	color: #003d50 !important;
+	padding: 6px 12px !important;
+}
+
+.ui-tabmenu .ui-tabmenu-nav .ui-state-active a{
+	color: #FFFFFF !important;
+}
+
+.ui-state-active{
+	background: #3E5E66 !important;
+	color: #FFFFFF !important;
+}
+
+.ui-tabmenu .ui-tabmenu-nav .ui-tabmenuitem {
+	border: solid 1px transparent !important;
+	border-top-left-radius: 3px !important;
+	border-top-right-radius: 3px !important;
+}
+
+.ui-tabmenu .ui-tabmenu-nav .ui-tabmenuitem {
+	list-style: none;
+	float: left;
+	position: relative;
+	margin: 0 .2em 1px 0;
+	padding: 0;
+	white-space: nowrap;
+	display: block;
+	border-bottom: 0;
+	top: 1px;
+}
+
+.ui-tabmenu {
+	border: solid 1px #c6d6df !important;
+	background-color: #fbfcfd !important;
+	color: #778d9b !important;
+	border-radius: 3px !important;
+	-webkit-border-radius: 3px !important;
+	-moz-border-radius: 3px !important;
+	padding: 2px 2px 0px 2px !important;
+}
+
+.ui-tabmenu .ui-tabmenu-nav {
+	margin: 0 !important;
+	padding: .2em .2em 0 !important;
+}
+
+.ui-widget-header{
+	background: #FBFCFD !important;
+}
+
+.ui-datatable table thead tr th, .ui-datatable table tfoot tr td, .ui-datatable table thead tr th {
+	color: #003d50 !important;
+	background: #dae8ef !important;
+	border: solid 1px #c1d5df !important;
+	outline: none !important;
+	padding: 6px !important;
+	font-size: 14px !important;
+}
+
+.ui-datatable .ui-datatable-odd {
+	background: #eef2f7 !important;
+}
+
+.ui-datatable .ui-datatable-even {
+	background: #fbfcfd !important;
 }
