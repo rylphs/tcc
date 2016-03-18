@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:r="http://java.sun.com/jsf/composite/components">
+	<ui:define name="content">
+		<r:crud-table tableHeader="Produtos" 
+			entityName="Produto"
+			mbean="#{listagemProdutoMB}">
+			
+			<p:column headerText="Produto ">
+				<h:outputText value="#{item.nome}" />
+			</p:column>
+			<p:column headerText="Custo">
+				<h:outputText value="#{item.custo}" />
+			</p:column>
+			<p:column headerText="Impostos">
+				<h:outputText value="0.0" />
+			</p:column>
+			<p:column headerText="Comissões">
+				<h:outputText value="#{item.comissao}" />
+			</p:column>
+			<p:column headerText="Lucro">
+				<h:outputText value="#{item.lucro}" />
+			</p:column>
+			<p:column headerText="Preço de venda">
+				<h:outputText value="#{item.custo}" />
+			</p:column>
+
+			<f:facet name="dialogContent">
+				<p:outputLabel value="Nome: "/>
+				<p:inputText value="#{listagemProdutoMB.editado.nome}"/><br/>
+			</f:facet>
+		</r:crud-table>
+	</ui:define>
+</ui:composition>

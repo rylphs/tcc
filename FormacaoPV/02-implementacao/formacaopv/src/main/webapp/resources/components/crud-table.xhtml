@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<composite:interface>
+	<composite:attribute name="mbean" required="true"/>
+	<composite:attribute name="widget" default="dlgItem"/>
+	<composite:attribute name="entityName" default="Item"/>
+	<composite:attribute name="tableHeader" default="#{cc.attrs.entityName}"/>
+	<composite:facet name="dialogContent" required="true"/>
+</composite:interface>
+<composite:implementation>
+	<h:form id="frm-crud">
+
+		<p:outputPanel id="tbl">
+			<h1>#{cc.attrs.tableHeader}</h1>
+			<p:dataTable value="#{cc.attrs.mbean.lista}" var="item"
+				selectionMode="single" selection="#{cc.attrs.mbean.selecionado}"
+				rowKey="#{item.id}" paginator="true" rows="5" pageLinks="5"
+				sortBy="#{item.id}" rowsPerPageTemplate="5,10,15"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+				<composite:insertChildren/>
+
+				<p:ajax event="rowSelect"
+					update="#{cc.attrs.id}:frm-crud:btnActions #{cc.attrs.id}:frm-crud:dlgEdit"
+					process="@this" />
+					
+				<p:ajax event="rowDblselect" listener="#{cc.attrs.mbean.prepararEdicao}" 
+					oncomplete="PF('#{cc.attrs.widget}').show()" update="#{cc.attrs.id}:frm-crud:dlgEdit" />
+			</p:dataTable>
+		</p:outputPanel>
+
+		<p:outputPanel id="btnActions">
+			<p:commandButton value="Novo"
+				action="#{cc.attrs.mbean.prepararAdicao}"
+				oncomplete="PF('#{cc.attrs.widget}').show()"
+				update="#{cc.attrs.id}:frm-crud:dlgEdit #{cc.attrs.id}:frm-crud:tbl #{cc.attrs.id}:frm-crud:btnActions" icon="fa fa-plus" />
+				
+			<p:commandButton value="Editar"
+				disabled="#{cc.attrs.mbean.selecionado == null}"
+				action="#{cc.attrs.mbean.prepararEdicao}"
+				onsuccess="PF('#{cc.attrs.widget}').show()"
+				update="#{cc.attrs.id}:frm-crud:tbl" icon="fa fa-edit" />
+				
+			<p:commandButton value="Remover"
+				disabled="#{cc.attrs.mbean.selecionado == null}"
+				action="#{cc.attrs.mbean.remover}" update="" icon="fa fa-remove">
+				<p:confirm header="Remover #{cc.attrs.entityName}"
+					message="Excluir &apos;#{cc.attrs.mbean.selecionado.nome}&apos;?"></p:confirm>
+			</p:commandButton>
+			
+		</p:outputPanel>
+		
+
+			<p:dialog header="#{cc.attrs.mbean.editando ? 'Editar': 'Novo'} #{cc.attrs.entityName}"
+				widgetVar="#{cc.attrs.widget}" resizable="false" modal="true"
+				dynamic="true" id="dlgEdit">
+				<div class="ui-grid dialog-form-top">
+					<p:outputPanel id="dlgEdit2">
+						<p:messages autoUpdate="true" />
+						
+						<composite:renderFacet name="dialogContent"/>
+	
+						<div class="ui-grid-row centered-button">
+							<div class="ui-grid-col-6">
+								<p:commandButton value="Atualizar"
+									action="#{cc.attrs.mbean.atualizar}"
+									oncomplete="if (args &amp;&amp; !args.validationFailed) PF('#{cc.attrs.widget}').hide()"
+									update="#{cc.attrs.id}:frm-crud:tbl" 
+									rendered="#{cc.attrs.mbean.editando}"/>
+								<p:commandButton value="Adicionar"
+									action="#{cc.attrs.mbean.adicionar}"
+									update="#{cc.attrs.id}:frm-crud:dlgEdit" 
+									oncomplete="PF('#{cc.attrs.widget}).hide()"
+									rendered="#{! cc.attrs.mbean.editando}" process="@all"/>
+							</div>
+							<div class="ui-grid-col-6">
+								<p:commandButton type="button" value="Cancelar"
+									onclick="PF('#{cc.attrs.widget}').hide()" />
+							</div>
+						</div>
+					</p:outputPanel>
+				</div>
+			</p:dialog>
+	</h:form>
+</composite:implementation>
+
+</html>
