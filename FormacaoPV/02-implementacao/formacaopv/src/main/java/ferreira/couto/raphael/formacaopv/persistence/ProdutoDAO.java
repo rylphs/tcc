@@ -29,4 +29,10 @@ public class ProdutoDAO {
 		em.persist(produto);
 		em.getTransaction().commit();
 	}
+	
+	public void atualizar(Produto produto){
+		em.getTransaction().begin();
+		em.merge(produto);
+		em.getTransaction().commit();
+	}
 }

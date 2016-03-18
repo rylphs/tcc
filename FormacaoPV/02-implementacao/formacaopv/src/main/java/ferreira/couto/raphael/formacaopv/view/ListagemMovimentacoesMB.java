@@ -27,13 +27,23 @@ public class ListagemMovimentacoesMB extends TableEditMB<Movimentacao>{
 	}
 
 	@Override
-	protected Funcionalidade getFuncionalidadeAdicao() {
-		return Funcionalidade.ADICAO_MOVIMENTACAO;
+	protected Funcionalidade getFuncionalidade() {
+		return Funcionalidade.MOVIMENTACAO;
 	}
 
 	@Override
 	protected void adicionarOnBC(Movimentacao movimentacao) throws FormacaoPVException {
 		movimentacaoBC.adicionarMovimentacao(movimentacao);
+	}
+	
+	@Override
+	protected String getItemDescription(){
+		return getSelecionado().getDescricao();
+	}
+	
+	@Override
+	protected void atualizarOnBC(Movimentacao movimentacao) throws FormacaoPVException {
+	//	movimentacaoBC.adicionarMovimentacao(movimentacao);
 	}
 	
 	@Override

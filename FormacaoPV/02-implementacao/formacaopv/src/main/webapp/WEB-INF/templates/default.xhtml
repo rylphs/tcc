@@ -13,28 +13,36 @@
 
 <h:body>
 	<h:form>
-		<p:tabMenu activeIndex="#{param.i}" style="margin-bottom: 10px">
-			<p:menuitem value="Produtos" outcome="/produto/listagem"
-				icon="fa fa-cube">
-				<f:param name="i" value="0" />
-			</p:menuitem>
-			<p:menuitem value="Caixa" outcome="/caixa/listagem"
-				icon="fa fa-money">
-				<f:param name="i" value="1" />
-			</p:menuitem>
-			<p:menuitem value="Admin" outcome="/produto/listagem"
-				icon="fa fa-cogs">
-				<f:param name="i" value="2" />
-			</p:menuitem>
-			<p:menuitem value="Relatórios" outcome="/produto/listagem"
-				icon="fa fa-line-chart">
-				<f:param name="i" value="3" />
-			</p:menuitem>
-		</p:tabMenu>
+		<div id="top">
+			<p:tabMenu activeIndex="#{param.i}" style="margin-bottom: 10px">
+				<p:menuitem value="Produtos" outcome="/produto/listagem"
+					icon="fa fa-cube">
+					<f:param name="i" value="0" />
+				</p:menuitem>
+				<p:menuitem value="Caixa" outcome="/caixa/listagem"
+					icon="fa fa-money">
+					<f:param name="i" value="1" />
+				</p:menuitem>
+				<p:menuitem value="Admin" outcome="/produto/listagem"
+					icon="fa fa-cogs">
+					<f:param name="i" value="2" />
+				</p:menuitem>
+				<p:menuitem value="Relatórios" outcome="/produto/listagem"
+					icon="fa fa-line-chart">
+					<f:param name="i" value="3" />
+				</p:menuitem>
+			</p:tabMenu>
+		</div>
 	</h:form>
 
 	<div id="content">
 		<ui:insert name="content"></ui:insert>
+		<p:confirmDialog global="true">
+			<p:commandButton value="Sim" type="button"
+				styleClass="ui-confirmdialog-yes" icon="fa fa-fw fa-trash" />
+			<p:commandButton value="Não" type="button"
+				styleClass="ui-confirmdialog-no" icon="fa fa-fw fa-close"/>
+		</p:confirmDialog>
 	</div>
 	<div id="messages">
 		<p:messages autoUpdate="true" globalOnly="true"></p:messages>

@@ -4,7 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	template="/WEB-INF/templates/default.xhtml"
-	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+	xmlns:p="http://primefaces.org/ui">
 	<ui:define name="content">
 		<h:form id="frm-movimentacoes">
 			<p:outputPanel styleClass="panel-wrapper">
@@ -40,7 +40,7 @@
 
 
 		<p:dialog header="Nova Movimentação" widgetVar="nova-movimentacao"
-			resizable="false" modal="true" dynamic="true">
+			resizable="false" modal="true" dynamic="false">
 			<h:form id="frm-nova-movimentacao">
 				<div class="ui-grid dialog-form-top">
 					<p:messages autoUpdate="true" />
@@ -68,7 +68,7 @@
 						<p:calendar styleClass="ui-grid-col-4" id="popup" value="#{listagemMovimentacoesMB.selecionado.data}" />	
 						<p:outputLabel value="Valor (R$): "
 							styleClass="ui-grid-col-4 input-label" />
-						<p:inputText size="10"
+						<p:inputText size="10" value="#{listagemMovimentacoesMB.selecionado.valor}"
 							styleClass="ui-grid-col-4" />
 					</div>
 
@@ -77,15 +77,14 @@
 							<p:commandButton value="Adicionar"
 								action="#{listagemMovimentacoesMB.adicionar}"
 								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('nova-movimentacao').hide()"
-								rendered="#{!listagemMovimentacoesMB.editando}" update=":frm-movimentacoes" />
+								rendered="#{!listagemMovimentacoesMB.editando}" update=":frm-movimentacoes"/>
 							<p:commandButton value="Atualizar"
 								rendered="#{listagemMovimentacoesMB.editando}"
 								oncomplete="console.log(args); if (args &amp;&amp; !args.validationFailed) PF('nova-movimentacao').hide()"
 								update=":frm-movimentacoes" />
 						</div>
 						<div class="ui-grid-col-6">
-							<p:commandButton value="Cancelar"
-								onclick="PF('novo-movimentacao').hide()" />
+						<p:commandButton type="button" value="Cancelar" onclick="PF('nova-movimentacao').hide()"/>
 						</div>
 					</div>
 				</div>

@@ -10,6 +10,7 @@ import ferreira.couto.raphael.formacaopv.exception.FormacaoPVException;
 public abstract class TableEditMB<T> extends BaseMB {
 	private enum Action{ EDIT, NEW}
 	private T selecionado;
+	private T editado;
 	private List<T> lista;
 	private Action action;
 	
@@ -18,19 +19,40 @@ public abstract class TableEditMB<T> extends BaseMB {
 		lista = getListaFromBC();
 	}
 	
-	public void prepararAdicao(){
-		action = Action.NEW;
-		selecionado = createNew();
+	public void prepararEdicao(){
+		action = Action.EDIT;
+		editado = selecionado;
 	}
+	
+	public void prepararAdicao(){
+		this.setSelecionado(null);
+		action = Action.NEW;
+		editado = createNew();
+	}
+	
 	
 	public void adicionar(){
 		try {
-			adicionarOnBC(selecionado);
+			adicionarOnBC(editado);
 			lista = getListaFromBC();
-			info(getFuncionalidadeAdicao(),"sucesso");
+			info(getFuncionalidade(),"adicao.sucesso", getItemDescription());
 		} catch (FormacaoPVException e) {
 			error(e.getFeature(), e.getStatus());
 		}
+	}
+	
+	public void atualizar(){
+		try {
+			atualizarOnBC(editado);
+			lista = getListaFromBC();
+			info(getFuncionalidade(),"edicao.sucesso", getItemDescription());
+		} catch (FormacaoPVException e) {
+			error(e.getFeature(), e.getStatus());
+		}
+	}
+	
+	public void remover(){
+		info(getFuncionalidade(),"remocao.sucesso", getItemDescription());
 	}
 	
 	public boolean isEditando(){
@@ -42,7 +64,6 @@ public abstract class TableEditMB<T> extends BaseMB {
 	}
 	
 	public void setSelecionado(T selecionado){
-		action = Action.EDIT;
 		this.selecionado = selecionado;
 	}
 	
@@ -50,9 +71,21 @@ public abstract class TableEditMB<T> extends BaseMB {
 		return lista;
 	}
 	
+	protected String getItemDescription(){
+		return null;
+	}
 	
 	protected abstract List<T> getListaFromBC();
-	protected abstract Funcionalidade getFuncionalidadeAdicao();
+	protected abstract Funcionalidade getFuncionalidade();
 	protected abstract void adicionarOnBC(T selecionado) throws FormacaoPVException;
+	protected abstract void atualizarOnBC(T selecionado) throws FormacaoPVException;
 	protected abstract T createNew();
+
+	public T getEditado() {
+		return editado;
+	}
+
+	public void setEditado(T editado) {
+		this.editado = editado;
+	}
 }

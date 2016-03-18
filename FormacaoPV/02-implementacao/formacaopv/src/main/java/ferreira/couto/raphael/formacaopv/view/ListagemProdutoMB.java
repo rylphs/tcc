@@ -1,5 +1,6 @@
 package ferreira.couto.raphael.formacaopv.view;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -13,7 +14,11 @@ import ferreira.couto.raphael.formacaopv.exception.FormacaoPVException;
 
 @ViewScoped
 @ManagedBean
-public class ListagemProdutoMB extends TableEditMB<Produto>{
+public class ListagemProdutoMB extends TableEditMB<Produto> implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Inject private ProdutoBC produtoBC;
 
 	@Override
@@ -22,17 +27,32 @@ public class ListagemProdutoMB extends TableEditMB<Produto>{
 	}
 
 	@Override
-	protected Funcionalidade getFuncionalidadeAdicao() {
-		return Funcionalidade.ADICAO_PRODUTO;
+	protected Funcionalidade getFuncionalidade() {
+		return Funcionalidade.PRODUTO;
 	}
 
 	@Override
 	protected void adicionarOnBC(Produto selecionado) throws FormacaoPVException {
 		produtoBC.adicionarProduto(selecionado);
 	}
+	
+	@Override
+	protected void atualizarOnBC(Produto selecionado) throws FormacaoPVException {
+		produtoBC.atualizarProduto(selecionado);
+	}
 
 	@Override
 	protected Produto createNew() {
 		return new Produto();
+	}
+	
+	@Override
+	protected String getItemDescription(){
+		return getEditado().getNome();
+	}
+	
+	public String getDialogHeader(){
+		if(isEditando()) return "Atualizar Produto";
+		else return "Novo Produto";
 	}
 }
