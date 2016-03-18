@@ -21,6 +21,7 @@ public class Movimentacao implements Serializable{
 	private String descricao;
 	private Date data = new Date();
 	private double valor;
+	private boolean venda;
 	@ManyToOne
 	private Produto produto;
 
@@ -62,5 +63,13 @@ public class Movimentacao implements Serializable{
 
 	public void setProduto(Produto produto) {
 		this.produto = produto;
+	}
+
+	public boolean isVenda() {
+		return venda;
+	}
+
+	public void setVenda(boolean venda) {
+		this.venda = venda;
 	}
 }

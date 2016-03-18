@@ -35,7 +35,7 @@ public abstract class TableEditMB<T> extends BaseMB {
 		try {
 			adicionarOnBC(editado);
 			lista = getListaFromBC();
-			info(getFuncionalidade(),"adicao.sucesso", getItemDescription());
+			info(getFuncionalidade(),"adicao.sucesso", getItemDescription(editado));
 		} catch (FormacaoPVException e) {
 			error(e.getFeature(), e.getStatus());
 		}
@@ -45,7 +45,7 @@ public abstract class TableEditMB<T> extends BaseMB {
 		try {
 			atualizarOnBC(editado);
 			lista = getListaFromBC();
-			info(getFuncionalidade(),"edicao.sucesso", getItemDescription());
+			info(getFuncionalidade(),"edicao.sucesso", getItemDescription(editado));
 		} catch (FormacaoPVException e) {
 			error(e.getFeature(), e.getStatus());
 		}
@@ -56,7 +56,7 @@ public abstract class TableEditMB<T> extends BaseMB {
 			editado = selecionado;
 			removerOnBC(editado);
 			lista = getListaFromBC();
-			info(getFuncionalidade(),"remocao.sucesso", getItemDescription());
+			info(getFuncionalidade(),"remocao.sucesso", getItemDescription(editado));
 		}
 		catch (FormacaoPVException e) {
 			error(e.getFeature(), e.getStatus());
@@ -79,8 +79,13 @@ public abstract class TableEditMB<T> extends BaseMB {
 		return lista;
 	}
 	
-	protected String getItemDescription(){
+	protected String getItemDescription(T item){
 		return null;
+	}
+	
+	public String getItemDescription(){
+		if(selecionado==null) return null;
+		return getItemDescription(selecionado);
 	}
 	
 	public T getEditado() {

@@ -1,5 +1,6 @@
 package ferreira.couto.raphael.formacaopv.view;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -15,7 +16,9 @@ import ferreira.couto.raphael.formacaopv.exception.FormacaoPVException;
 
 @ViewScoped
 @ManagedBean
-public class ListagemMovimentacoesMB extends TableEditMB<Movimentacao>{
+public class ListagemMovimentacoesMB extends TableEditMB<Movimentacao> implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	@Inject MovimentacaoBC movimentacaoBC;
 	@Inject ProdutoBC produtoBC;
 	private boolean isDespesa;
@@ -37,19 +40,18 @@ public class ListagemMovimentacoesMB extends TableEditMB<Movimentacao>{
 	}
 	
 	@Override
-	protected String getItemDescription(){
-		return getSelecionado().getDescricao();
+	protected String getItemDescription(Movimentacao movimentacao){
+		return movimentacao.getDescricao();
 	}
 	
 	@Override
 	protected void atualizarOnBC(Movimentacao movimentacao) throws FormacaoPVException {
-	//	movimentacaoBC.adicionarMovimentacao(movimentacao);
+		movimentacaoBC.atualizarMovimentacao(movimentacao);
 	}
 	
 	@Override
-	protected void removerOnBC(Movimentacao selecionado) throws FormacaoPVException {
-		// TODO Auto-generated method stub
-		
+	protected void removerOnBC(Movimentacao movimentacao) throws FormacaoPVException {
+		movimentacaoBC.excluirProduto(movimentacao);
 	}
 	
 	@Override

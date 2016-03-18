@@ -7,6 +7,22 @@ body{
 /* 	height: 100%; */
 }
 
+.negative{
+	color: red;
+}
+
+.negative::before{
+	content: "-";
+}
+
+.positive{
+	color: blue !important;
+}
+
+.positive::before{
+	content: "+" !important;
+}
+
 h1{
 	color: #003d50;
 }

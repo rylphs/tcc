@@ -23,4 +23,9 @@ public class MovimentacaoBC {
 		movimentacaoDAO.delete(movimentacao);
 	}
 
+	public void atualizarMovimentacao(Movimentacao movimentacao) {
+		movimentacaoDAO.atualizar(movimentacao);
+		
+	}
+
 }

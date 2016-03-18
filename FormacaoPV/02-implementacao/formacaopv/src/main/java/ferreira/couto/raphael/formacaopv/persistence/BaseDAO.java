@@ -24,15 +24,22 @@ public abstract class BaseDAO<T> {
 		return query.getResultList();
 	}
 
-	public void delete(T movimentacao) {
+	public void delete(T item) {
 		em.getTransaction().begin();
-		em.remove(movimentacao);
+		item = em.merge(item);
+		em.remove(item);
 		em.getTransaction().commit();
 	}
 
 	public void adicionar(T movimentacao) {
 		em.getTransaction().begin();
 		em.persist(movimentacao);
+		em.getTransaction().commit();
+	}
+	
+	public void atualizar(T item){
+		em.getTransaction().begin();
+		em.merge(item);
 		em.getTransaction().commit();
 	}
 
