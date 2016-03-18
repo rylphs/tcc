@@ -47,6 +47,12 @@ public class ListagemMovimentacoesMB extends TableEditMB<Movimentacao>{
 	}
 	
 	@Override
+	protected void removerOnBC(Movimentacao selecionado) throws FormacaoPVException {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
 	protected Movimentacao createNew(){
 		return new Movimentacao();
 	}
@@ -63,6 +69,8 @@ public class ListagemMovimentacoesMB extends TableEditMB<Movimentacao>{
 		if(produtos==null) produtos = produtoBC.obterProdutos();
 		return produtos;
 	}
+
+	
 
 	
 }

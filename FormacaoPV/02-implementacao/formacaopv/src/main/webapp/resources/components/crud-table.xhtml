@@ -24,7 +24,7 @@
 				rowKey="#{item.id}" paginator="true" rows="5" pageLinks="5"
 				sortBy="#{item.id}" rowsPerPageTemplate="5,10,15"
 				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
-
+	
 				<composite:insertChildren/>
 
 				<p:ajax event="rowSelect"
@@ -50,7 +50,7 @@
 				
 			<p:commandButton value="Remover"
 				disabled="#{cc.attrs.mbean.selecionado == null}"
-				action="#{cc.attrs.mbean.remover}" update="" icon="fa fa-remove">
+				action="#{cc.attrs.mbean.remover}" update="#{cc.attrs.id}:frm-crud:tbl" icon="fa fa-remove">
 				<p:confirm header="Remover #{cc.attrs.entityName}"
 					message="Excluir &apos;#{cc.attrs.mbean.selecionado.nome}&apos;?"></p:confirm>
 			</p:commandButton>

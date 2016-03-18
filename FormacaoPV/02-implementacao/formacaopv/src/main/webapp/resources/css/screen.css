@@ -7,6 +7,10 @@ body{
 /* 	height: 100%; */
 }
 
+h1{
+	color: #003d50;
+}
+
 #top{
 	padding-left: 50px;
 	padding-right: 50px;

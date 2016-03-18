@@ -40,6 +40,11 @@ public class ListagemProdutoMB extends TableEditMB<Produto> implements Serializa
 	protected void atualizarOnBC(Produto selecionado) throws FormacaoPVException {
 		produtoBC.atualizarProduto(selecionado);
 	}
+	
+	@Override
+	protected void removerOnBC(Produto selecionado) throws FormacaoPVException {
+		produtoBC.excluirProduto(selecionado);
+	}
 
 	@Override
 	protected Produto createNew() {

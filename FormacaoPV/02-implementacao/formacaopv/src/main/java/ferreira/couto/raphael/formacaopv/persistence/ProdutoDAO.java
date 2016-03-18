@@ -20,6 +20,7 @@ public class ProdutoDAO {
 
 	public void delete(Produto produto) {
 		em.getTransaction().begin();
+		produto = em.merge(produto);
 		em.remove(produto);
 		em.getTransaction().commit();
 	}

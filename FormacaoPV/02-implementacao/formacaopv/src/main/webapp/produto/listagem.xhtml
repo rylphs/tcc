@@ -4,115 +4,58 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	template="/WEB-INF/templates/default.xhtml"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:r="http://java.sun.com/jsf/composite/components">
 	<ui:define name="content">
-		<h:form id="frm-produtos">
-			<p:outputPanel styleClass="panel-wrapper">
-				<h1>Produtos</h1>
-				<p:dataTable value="#{listagemProdutoMB.lista}" var="produto"
-					selectionMode="single" selection="#{listagemProdutoMB.selecionado}"
-					rowKey="#{produto.id}" paginator="true" rows="5" pageLinks="5"
-					sortBy="#{produto.id}" rowsPerPageTemplate="5,10,15"
-					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
-					<p:column headerText="Produto ">
-						<h:outputText value="#{produto.nome}" />
-					</p:column>
-					<p:column headerText="Custo">
-						<h:outputText value="#{produto.custo}" />
-					</p:column>
-					<p:column headerText="Impostos">
-						<h:outputText value="0.0" />
-					</p:column>
-					<p:column headerText="Comissões">
-						<h:outputText value="#{produto.comissao}" />
-					</p:column>
-					<p:column headerText="Lucro">
-						<h:outputText value="#{produto.lucro}" />
-					</p:column>
-					<p:column headerText="Preço de venda">
-						<h:outputText value="#{produto.custo}" />
-					</p:column>
-					<p:ajax event="rowSelect"
-						update=":frm-novo-produto :frm-produtos:btnActions dlgProduto"
-						process="@this" />
-					<p:ajax event="rowDblselect"
-						update=":frm-novo-produto :frm-produtos:btnActions dlgProduto"
-						oncomplete="PF('novo-produto').show()" />
-				</p:dataTable>
-				<p:outputPanel id="btnActions">
-					<p:commandButton value="Novo"
-						action="#{listagemProdutoMB.prepararAdicao}"
-						onsuccess="PF('novo-produto').show()"
-						update="dlgProduto :frm-novo-produto :frm-produtos" icon="fa fa-plus" />
-					<p:commandButton value="Editar"
-						disabled="#{! listagemProdutoMB.editando}"
-						onsuccess="PF('novo-produto').show()"
-						update=":frm-novo-produto :frm-produtos" icon="fa fa-edit" />
-					<p:commandButton value="Remover"
-						disabled="#{! listagemProdutoMB.editando}"
-						action="#{listagemProdutoMB.remover}"
-						update=":frm-novo-produto :frm-produtos" icon="fa fa-remove">
-						<p:confirm header="Remover Produto"
-							message="Excluir &apos;#{listagemProdutoMB.selecionado.nome}&apos;?"></p:confirm>
-					</p:commandButton>
-				</p:outputPanel>
-			</p:outputPanel>
-		</h:form>
+		<r:crud-table mbean="#{listagemProdutoMB}" entityName="Produto"
+			tableHeader="Produtos">
 
+			<p:column headerText="Produto ">
+				<h:outputText value="#{item.nome}" />
+			</p:column>
+			<p:column headerText="Custo">
+				<h:outputText value="#{item.custo}" />
+			</p:column>
+			<p:column headerText="Impostos">
+				<h:outputText value="0.0" />
+			</p:column>
+			<p:column headerText="Comissões">
+				<h:outputText value="#{item.comissao}" />
+			</p:column>
+			<p:column headerText="Lucro">
+				<h:outputText value="#{item.lucro}" />
+			</p:column>
+			<p:column headerText="Preço de venda">
+				<h:outputText value="#{item.custo}" />
+			</p:column>
 
-		<p:outputPanel id="dlgProduto">
-			<p:dialog header="#{listagemProdutoMB.dialogHeader}"
-				widgetVar="novo-produto" resizable="false" modal="true"
-				dynamic="true">
-				<h:form id="frm-novo-produto">
-					<div class="ui-grid dialog-form-top">
-						<p:messages autoUpdate="true" />
-						<div class="ui-grid-row">
-							<p:outputLabel value="Nome:"
-								styleClass="ui-grid-col-3 input-label" />
-							<p:inputText value="#{listagemProdutoMB.selecionado.nome}"
-								size="50" styleClass="ui-grid-col-9" />
-						</div>
-						<div class="ui-grid-row">
-							<p:outputLabel value="Custo (R$): "
-								styleClass="ui-grid-col-4 input-label" />
-							<p:inputText required="true" label="Custo"
-								value="#{listagemProdutoMB.selecionado.custo}" size="10"
-								styleClass="ui-grid-col-4" />
-							<p:outputLabel value="Lucro (%): "
-								styleClass="ui-grid-col-4 input-label" />
-							<p:inputText value="#{listagemProdutoMB.selecionado.lucro}"
-								size="10" styleClass="ui-grid-col-4" />
-						</div>
-						<div class="ui-grid-row">
-							<p:outputLabel value="Comissão (%): "
-								styleClass="ui-grid-col-4 input-label" />
-							<p:inputText value="#{listagemProdutoMB.selecionado.comissao}"
-								styleClass="ui-grid-col-4" size="10" />
-							<span class="ui-grid-col-4" /><span class="ui-grid-col-4" />
-						</div>
+			<f:facet name="dialogContent">
+				<div class="ui-grid-row">
+					<p:outputLabel value="Nome:" styleClass="ui-grid-col-3 input-label" />
+					<p:inputText value="#{listagemProdutoMB.editado.nome}" size="50"
+						styleClass="ui-grid-col-9" />
+				</div>
+				<div class="ui-grid-row">
+					<p:outputLabel value="Custo (R$): "
+						styleClass="ui-grid-col-4 input-label" />
+					<p:inputText required="true" label="Custo"
+						value="#{listagemProdutoMB.editado.custo}" size="10"
+						styleClass="ui-grid-col-4" />
+					<p:outputLabel value="Lucro (%): "
+						styleClass="ui-grid-col-4 input-label" />
+					<p:inputText value="#{listagemProdutoMB.editado.lucro}" size="10"
+						styleClass="ui-grid-col-4" />
+				</div>
+				<div class="ui-grid-row">
+					<p:outputLabel value="Comissão (%): "
+						styleClass="ui-grid-col-4 input-label" />
+					<p:inputText value="#{listagemProdutoMB.editado.comissao}"
+						styleClass="ui-grid-col-4" size="10" />
+					<span class="ui-grid-col-4" /><span class="ui-grid-col-4" />
+				</div>
+			</f:facet>
 
-						<div class="ui-grid-row centered-button">
-							<div class="ui-grid-col-6">
-								<p:commandButton value="Adicionar"
-									action="#{listagemProdutoMB.adicionar}"
-									oncomplete="if (args &amp;&amp; !args.validationFailed) PF('novo-produto').hide()"
-									rendered="#{!listagemProdutoMB.editando}"
-									update=":frm-produtos" />
-								<p:commandButton value="Atualizar"
-									action="#{listagemProdutoMB.atualizar}"
-									rendered="#{listagemProdutoMB.editando}"
-									oncomplete="if (args &amp;&amp; !args.validationFailed) PF('novo-produto').hide()"
-									update=":frm-produtos" />
-							</div>
-							<div class="ui-grid-col-6">
-								<p:commandButton type="button" value="Cancelar"
-									onclick="PF('novo-produto').hide()" />
-							</div>
-						</div>
-					</div>
-				</h:form>
-			</p:dialog>
-		</p:outputPanel>
+		</r:crud-table>
+
 	</ui:define>
 </ui:composition>
