@@ -20,6 +20,7 @@ public class Produto implements Serializable{
 	private Double custo;
 	private Double lucro;
 	private Double comissao;
+	private double descontoImposto;
 	
 	@Override
 	public int hashCode() {
@@ -84,6 +85,14 @@ public class Produto implements Serializable{
 	
 	public Integer getId(){
 		return id;
+	}
+
+	public double getDescontoImposto() {
+		return descontoImposto;
+	}
+
+	public void setDescontoImposto(double descontoImposto) {
+		this.descontoImposto = descontoImposto;
 	}
 
 }

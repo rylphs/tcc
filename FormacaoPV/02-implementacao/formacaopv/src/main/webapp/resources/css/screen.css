@@ -7,6 +7,20 @@ body{
 /* 	height: 100%; */
 }
 
+.pick-item{
+	border: solid 1px black;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 5px;
+	padding-right: 5px;
+	border-radius: 3px;
+}
+
+.pick-item-remove{
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
 .negative{
 	color: red;
 }

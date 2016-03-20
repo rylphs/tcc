@@ -1,7 +1,7 @@
 package ferreira.couto.raphael.formacaopv.enums;
 
 public enum Funcionalidade {
-	PRODUTO, MOVIMENTACAO;
+	PRODUTO, MOVIMENTACAO, IMPOSTO;
 	
 	@Override
 	public String toString(){

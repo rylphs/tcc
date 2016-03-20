@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<composite:interface componentType="ferreira.couto.raphael.pick-select">
+	<composite:attribute name="pickList"/>
+	<composite:attribute name="completeList"/>
+	<composite:attribute name="labelProperty"/>
+</composite:interface>
+<composite:implementation >
+	
+	<h:form id="frm-select-list">
+		<p:outputPanel id="pickList">
+			<ui:repeat var="item" value="#{cc.attrs.completeList}">
+				<span class="pick-item">
+					<p:outputLabel styleClass="pick-item-label" value="#{item[cc.attrs.labelProperty]}"/> 
+					<p:commandButton action="#{cc.removeItem()}"
+						update="#{cc.attrs.id}:frm-select-list:pickList" 
+						styleClass="pick-item-remove" icon="fa fa-close">
+						<f:setPropertyActionListener target="#{cc.toDelete}" value="#{item}" />
+					</p:commandButton>
+				</span>
+			</ui:repeat>
+			<p:selectOneMenu converter="entity-converter" value="#{cc.selected}">
+				<f:selectItems value="#{cc.remainingItems}" var="item" itemLabel="#{item[cc.attrs.labelProperty]}" itemValue="#{item}"/>
+				<p:ajax event="change" listener="#{cc.addItem}" process="@this"/>
+			</p:selectOneMenu>
+		</p:outputPanel>
+	</h:form>
+</composite:implementation>
+
+</html>

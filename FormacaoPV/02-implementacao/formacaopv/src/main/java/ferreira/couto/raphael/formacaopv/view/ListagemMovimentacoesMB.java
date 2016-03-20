@@ -68,7 +68,7 @@ public class ListagemMovimentacoesMB extends TableEditMB<Movimentacao> implement
 	}
 	
 	public List<Produto> getProdutos(){
-		if(produtos==null) produtos = produtoBC.obterProdutos();
+		if(produtos==null) produtos = produtoBC.getProdutos();
 		return produtos;
 	}
 

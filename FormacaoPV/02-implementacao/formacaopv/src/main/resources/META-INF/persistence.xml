@@ -10,6 +10,7 @@
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <class>ferreira.couto.raphael.formacaopv.entity.Produto</class>
         <class>ferreira.couto.raphael.formacaopv.entity.Movimentacao</class>
+        <class>ferreira.couto.raphael.formacaopv.entity.Imposto</class>
         <properties>
         	 <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
  			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/produtopv" ></property>

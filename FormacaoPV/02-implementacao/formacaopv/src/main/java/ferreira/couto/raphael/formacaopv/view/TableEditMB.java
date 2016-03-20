@@ -15,9 +15,13 @@ public abstract class TableEditMB<T> extends BaseMB {
 	private Action action;
 	
 	@PostConstruct
-	public void onInit(){
+	public void init(){
 		lista = getListaFromBC();
+		onInit();
 	}
+	
+	protected void onInit(){}
+	protected void beforeAdd(T item){}
 	
 	public void prepararEdicao(){
 		action = Action.EDIT;
@@ -33,6 +37,7 @@ public abstract class TableEditMB<T> extends BaseMB {
 	
 	public void adicionar(){
 		try {
+			beforeAdd(editado);
 			adicionarOnBC(editado);
 			lista = getListaFromBC();
 			info(getFuncionalidade(),"adicao.sucesso", getItemDescription(editado));

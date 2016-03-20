@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import ferreira.couto.raphael.formacaopv.entity.Imposto;
 import ferreira.couto.raphael.formacaopv.entity.Produto;
 import ferreira.couto.raphael.formacaopv.exception.FormacaoPVException;
 import ferreira.couto.raphael.formacaopv.persistence.ProdutoDAO;
@@ -11,20 +12,26 @@ import ferreira.couto.raphael.formacaopv.persistence.ProdutoDAO;
 public class ProdutoBC {
 	@Inject ProdutoDAO produtoDAO;
 	
-	public List<Produto> obterProdutos() {
+	public List<Produto> getProdutos() {
 		return produtoDAO.findAll();
 	}
 	
-	public void adicionarProduto(Produto produto) throws FormacaoPVException{
+	public void addProduto(Produto produto) throws FormacaoPVException{
 		produtoDAO.adicionar(produto);
 	}
 	
-	public void atualizarProduto(Produto produto) throws FormacaoPVException{
+	public void updateProduto(Produto produto) throws FormacaoPVException{
 		produtoDAO.atualizar(produto);
 	}
 
-	public void excluirProduto(Produto produto) {
+	public void deleteProduto(Produto produto) {
 		produtoDAO.delete(produto);
+	}
+	
+	public void adicionarImposto(Produto produto, Imposto imposto){
+		double descontoImposto = produto.getDescontoImposto();
+		descontoImposto += produto.getCusto() * imposto.getPercentagem();
+		produto.setDescontoImposto(descontoImposto);
 	}
 
 }

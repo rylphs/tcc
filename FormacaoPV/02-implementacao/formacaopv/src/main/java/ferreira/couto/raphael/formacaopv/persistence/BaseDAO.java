@@ -31,13 +31,13 @@ public abstract class BaseDAO<T> {
 		em.getTransaction().commit();
 	}
 
-	public void adicionar(T movimentacao) {
+	public void add(T item) {
 		em.getTransaction().begin();
-		em.persist(movimentacao);
+		em.persist(item);
 		em.getTransaction().commit();
 	}
 	
-	public void atualizar(T item){
+	public void update(T item){
 		em.getTransaction().begin();
 		em.merge(item);
 		em.getTransaction().commit();

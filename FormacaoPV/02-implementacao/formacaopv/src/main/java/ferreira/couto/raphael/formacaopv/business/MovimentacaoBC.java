@@ -16,7 +16,7 @@ public class MovimentacaoBC {
 	}
 	
 	public void adicionarMovimentacao(Movimentacao movimentacao) throws FormacaoPVException{
-		movimentacaoDAO.adicionar(movimentacao);
+		movimentacaoDAO.add(movimentacao);
 	}
 
 	public void excluirProduto(Movimentacao movimentacao) {
@@ -24,7 +24,7 @@ public class MovimentacaoBC {
 	}
 
 	public void atualizarMovimentacao(Movimentacao movimentacao) {
-		movimentacaoDAO.atualizar(movimentacao);
+		movimentacaoDAO.update(movimentacao);
 		
 	}
 
