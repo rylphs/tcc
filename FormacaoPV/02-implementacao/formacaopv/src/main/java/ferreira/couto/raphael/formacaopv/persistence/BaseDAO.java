@@ -21,6 +21,32 @@ public abstract class BaseDAO<T> {
                 .getGenericSuperclass()).getActualTypeArguments()[0];
 	}
 	
+	protected TypedQuery<T> qry(String strQuery){
+		TypedQuery<T> tpQuery = em.createQuery(strQuery, baseClass);
+		return tpQuery;
+	}
+	
+	protected <R> TypedQuery<R> qry(String strQuery, Class<R> clazz){
+		TypedQuery<R> tpQuery = em.createQuery(strQuery, clazz);
+		return tpQuery;
+	}
+	
+	protected TypedQuery<T> qry(String strQuery, Map<String, Object> parameters){
+		TypedQuery<T> tpQuery = em.createQuery(strQuery, baseClass);
+		for(Entry<String,Object> entry : parameters.entrySet()){
+			tpQuery.setParameter(entry.getKey(), entry.getValue());
+		}
+		return tpQuery;
+	}
+	
+	protected TypedQuery<T> qry(String strQuery, Object... parameters){
+		TypedQuery<T> tpQuery = em.createQuery(strQuery, baseClass);
+		for(int i = 0; i<parameters.length; i++){
+			tpQuery.setParameter(i+1, parameters[i]);
+		}
+		return tpQuery;
+	}
+	
 	public List<T> findByField(String field, Object value){
 		String strQry = "select c from "+ baseClass.getSimpleName() +" c ";
 		strQry += "where c." + field + "=:value";
@@ -30,7 +56,7 @@ public abstract class BaseDAO<T> {
 	}
 	
 	public List<T> findByFields(Map<String, Object> mapPropertyValue){
-		String strQry = "select c from "+ baseClass.getSimpleName() +" c where true ";
+		String strQry = "select c from "+ baseClass.getSimpleName() +" c where c.id is not null ";
 		List<Object> values = new ArrayList<>();
 		int paramIndex = 1;
 		for(Entry<String, Object> entry : mapPropertyValue.entrySet()){

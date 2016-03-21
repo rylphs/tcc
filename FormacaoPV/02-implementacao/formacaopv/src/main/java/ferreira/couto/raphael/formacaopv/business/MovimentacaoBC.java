@@ -8,8 +8,10 @@ import ferreira.couto.raphael.formacaopv.entity.Estoque;
 import ferreira.couto.raphael.formacaopv.entity.Localidade;
 import ferreira.couto.raphael.formacaopv.entity.Movimentacao;
 import ferreira.couto.raphael.formacaopv.entity.Produto;
+import ferreira.couto.raphael.formacaopv.enums.Funcionalidade;
 import ferreira.couto.raphael.formacaopv.exception.FormacaoPVException;
 import ferreira.couto.raphael.formacaopv.persistence.MovimentacaoDAO;
+import ferreira.couto.raphael.formacaopv.utils.NumberUtils;
 
 public class MovimentacaoBC {
 	@Inject MovimentacaoDAO movimentacaoDAO;
@@ -22,10 +24,11 @@ public class MovimentacaoBC {
 	public void adicionarMovimentacao(Movimentacao movimentacao) throws FormacaoPVException{
 		if(movimentacao.isVenda()){
 			Produto produto = movimentacao.getProduto();
-			Estoque estoque = estoqueBC.findByProdutoLugar(produto);
-			int valor = estoque.getQuantidade();
-			valor--;
-			estoque.setQuantidade(valor);
+			Localidade localidade = movimentacao.getLocalidade();
+			Estoque estoque = estoqueBC.findByProdutoLugar(produto, localidade);
+			int qtde = estoque.getQuantidade();
+			qtde -= movimentacao.getQuantidade();
+			estoque.setQuantidade(qtde);
 			estoqueBC.update(estoque);
 		}
 		movimentacaoDAO.add(movimentacao);
@@ -42,6 +45,13 @@ public class MovimentacaoBC {
 	
 	public List<Localidade> getLocalidades(){
 		return estoqueBC.getLocalidades();
+	}
+
+	public double getCF() throws FormacaoPVException {
+		double custosFixos = NumberUtils.toPrimitiveDouble(movimentacaoDAO.getCustosFixos());
+		double vendasMedias = NumberUtils.toPrimitiveDouble(movimentacaoDAO.getVendasMedias());
+		if(vendasMedias==0) throw new FormacaoPVException(Funcionalidade.PRODUTO, "calculo-pv.sem-vendas");
+		return custosFixos / vendasMedias;
 	}
 
 }

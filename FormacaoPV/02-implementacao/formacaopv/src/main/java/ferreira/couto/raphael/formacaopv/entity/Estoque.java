@@ -7,6 +7,7 @@ import javax.persistence.OneToOne;
 public class Estoque extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 
+	@OneToOne
 	private Produto produto;
 	private Integer quantidade;
 	@OneToOne

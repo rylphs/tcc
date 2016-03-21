@@ -23,6 +23,11 @@
 					<h:outputText value="#{item.produto.nome}" />
 				</p:outputPanel>
 			</p:column>
+			
+			<p:column headerText="Quantidade">
+				<p:outputLabel value="#{item.quantidade}" />
+			</p:column>
+			
 			<p:column headerText="Valor">
 				<h:outputText value="#{item.valor}" styleClass="#{item.venda? 'positive':'negative'}"/>
 			</p:column>
@@ -71,19 +76,30 @@
 							var="produto" itemLabel="#{produto.nome}"  />
 					</p:selectOneMenu>
 				</div>
-				</p:outputPanel>
+				
 
 				<div class="ui-grid-row">
 					<p:outputLabel value="Data: "
-						styleClass="ui-grid-col-4 input-label" />
-					<p:calendar styleClass="ui-grid-col-4" id="popup"
+						styleClass="ui-grid-col-1 input-label" />
+					<p:calendar size="5" styleClass="ui-grid-col-2"
 						value="#{listagemMovimentacoesMB.editado.data}" />
-					<p:outputLabel value="Valor (R$): "
-						styleClass="ui-grid-col-4 input-label" />
-					<p:inputText size="10"
+						
+					<p:outputLabel value="Quantidade: "
+						disabled="#{!listagemMovimentacoesMB.editado.venda}"
+						styleClass="ui-grid-col-2 input-label #{listagemMovimentacoesMB.editado.venda? '':'ui-state-disabled'}" />
+					<p:inputText size="5"
+						disabled="#{!listagemMovimentacoesMB.editado.venda}"
+						value="#{listagemMovimentacoesMB.editado.quantidade}"
+						required="#{listagemMovimentacoesMB.editado.venda}"
+						styleClass="ui-grid-col-2" />
+						
+					<p:outputLabel value="Valor Total (R$): "
+						styleClass="ui-grid-col-3 input-label" />
+					<p:inputText size="5"
 						value="#{listagemMovimentacoesMB.editado.valor}"
-						styleClass="ui-grid-col-4" />
+						styleClass="ui-grid-col-2" />
 				</div>
+				</p:outputPanel>
 			</f:facet>
 		</r:crud-table>
 	</ui:define>

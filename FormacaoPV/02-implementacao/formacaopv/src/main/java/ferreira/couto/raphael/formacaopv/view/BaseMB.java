@@ -12,6 +12,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 import ferreira.couto.raphael.formacaopv.enums.Funcionalidade;
+import ferreira.couto.raphael.formacaopv.exception.FormacaoPVException;
 
 public abstract class BaseMB { 
 	private static ResourceBundle bundle;
@@ -57,6 +58,10 @@ public abstract class BaseMB {
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(SEVERITY_INFO, message, null));
 	}
 	
+	protected void error(FormacaoPVException exception){
+		error(exception.getFeature(), exception.getStatus());
+	}
+	
 	protected void error(Funcionalidade feature, String action){
 		String message = getMessage(feature, action);
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(SEVERITY_ERROR, message, null));
@@ -65,6 +70,10 @@ public abstract class BaseMB {
 	protected void error(Funcionalidade feature, String action, Object... args){
 		String message = getMessage(feature, action, args);
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(SEVERITY_ERROR, message, null));
+	}
+	
+	protected void warn(FormacaoPVException exception){
+		warn(exception.getFeature(), exception.getStatus());
 	}
 	
 	protected void warn(Funcionalidade feature, String action){

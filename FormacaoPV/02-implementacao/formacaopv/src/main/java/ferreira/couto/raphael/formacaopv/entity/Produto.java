@@ -10,7 +10,8 @@ public class Produto extends BaseEntity{
 	private Double custo;
 	private Double lucro;
 	private Double comissao;
-	private double descontoImposto;
+	private Double descontoImposto;
+	private Double precoFinal;
 
 	public String getNome() {
 		return nome;
@@ -44,12 +45,20 @@ public class Produto extends BaseEntity{
 		this.comissao = comissao;
 	}
 
-	public double getDescontoImposto() {
+	public Double getDescontoImposto() {
 		return descontoImposto;
 	}
 
-	public void setDescontoImposto(double descontoImposto) {
+	public void setDescontoImposto(Double descontoImposto) {
 		this.descontoImposto = descontoImposto;
+	}
+
+	public Double getPrecoFinal() {
+		return precoFinal;
+	}
+
+	public void setPrecoFinal(Double precoFinal) {
+		this.precoFinal = precoFinal;
 	}
 
 }

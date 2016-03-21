@@ -77,6 +77,14 @@ public class ListagemProdutoMB extends TableEditMB<Produto> implements Serializa
 		return "Produto \"" +produto.getNome() + "\"";
 	}
 	
+	public void recalcularPreco(){
+		try {
+			produtoBC.recalcularPreco(getEditado());
+		} catch (FormacaoPVException e) {
+			warn(e);
+		}
+	}
+	
 	public List<Imposto> getImpostos(){
 		return impostos;
 	}

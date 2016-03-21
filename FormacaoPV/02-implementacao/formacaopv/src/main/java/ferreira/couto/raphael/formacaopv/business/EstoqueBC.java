@@ -1,7 +1,9 @@
 package ferreira.couto.raphael.formacaopv.business;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -43,8 +45,11 @@ public class EstoqueBC {
 		localidadeDAO.update(localidade);
 	}
 	
-	public Estoque findByProdutoLugar(Produto produto) {
-		List<Estoque> estoques = estoqueDAO.findByField("produto", produto);
+	public Estoque findByProdutoLugar(Produto produto, Localidade localidade) {
+		Map<String, Object> fields = new HashMap<>();
+		fields.put("produto", produto);
+		fields.put("localidade", localidade);
+		List<Estoque> estoques = estoqueDAO.findByFields(fields);
 		return estoques.isEmpty() ? null : estoques.get(0);
 	}
 

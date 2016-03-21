@@ -39,6 +39,6 @@ Cálculo do Preço de venda à vista
 
             Custo da mercadoria vendida
 PVV = -----------------------------------------
-        (%Impostos + %Comissões + %CF + %Lucro)
-        (-------------------------------------)
-	(               100                   )   
+        1-(%Impostos + %Comissões + %CF + %Lucro)
+          (-------------------------------------)
+	  (               100                   )   
