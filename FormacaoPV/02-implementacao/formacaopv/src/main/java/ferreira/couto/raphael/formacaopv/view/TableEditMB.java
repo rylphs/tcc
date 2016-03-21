@@ -16,6 +16,7 @@ public abstract class TableEditMB<T> extends BaseMB {
 	
 	@PostConstruct
 	public void init(){
+		editado = createNew();
 		lista = getListaFromBC();
 		onInit();
 	}
@@ -84,10 +85,6 @@ public abstract class TableEditMB<T> extends BaseMB {
 		return lista;
 	}
 	
-	protected String getItemDescription(T item){
-		return null;
-	}
-	
 	public String getItemDescription(){
 		if(selecionado==null) return null;
 		return getItemDescription(selecionado);
@@ -107,4 +104,5 @@ public abstract class TableEditMB<T> extends BaseMB {
 	protected abstract void atualizarOnBC(T selecionado) throws FormacaoPVException;
 	protected abstract void removerOnBC(T selecionado) throws FormacaoPVException;
 	protected abstract T createNew();
+	protected abstract String getItemDescription(T item);
 }

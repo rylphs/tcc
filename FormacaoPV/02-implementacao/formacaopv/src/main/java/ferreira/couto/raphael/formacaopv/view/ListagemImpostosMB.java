@@ -49,7 +49,7 @@ public class ListagemImpostosMB extends TableEditMB<Imposto> {
 	
 	@Override
 	protected String getItemDescription(Imposto imposto) {
-		return imposto.getNome();
+		return "Imposto \""+imposto.getNome()+"\"";
 	}
 
 }

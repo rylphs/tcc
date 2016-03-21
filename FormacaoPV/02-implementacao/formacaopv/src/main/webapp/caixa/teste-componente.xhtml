@@ -7,8 +7,9 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:r="http://java.sun.com/jsf/composite/components">
 	<ui:define name="content">
-		<r:select-list pickList="#{listagemProdutoMB.impostosSelecionados}" 
-			completeList="#{listagemProdutoMB.impostos}" 
+		<r:select-list 
+			pickList="#{listagemProdutoMB.impostosSelecionados}" 
+			selectList="#{listagemProdutoMB.impostos}" 
 			labelProperty="nome"/>
 	</ui:define>
 </ui:composition>

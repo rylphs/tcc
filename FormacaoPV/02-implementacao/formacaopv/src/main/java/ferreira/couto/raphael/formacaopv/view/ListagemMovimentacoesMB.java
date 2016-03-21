@@ -7,8 +7,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
+import ferreira.couto.raphael.formacaopv.business.EstoqueBC;
 import ferreira.couto.raphael.formacaopv.business.MovimentacaoBC;
 import ferreira.couto.raphael.formacaopv.business.ProdutoBC;
+import ferreira.couto.raphael.formacaopv.entity.Localidade;
 import ferreira.couto.raphael.formacaopv.entity.Movimentacao;
 import ferreira.couto.raphael.formacaopv.entity.Produto;
 import ferreira.couto.raphael.formacaopv.enums.Funcionalidade;
@@ -20,6 +22,7 @@ public class ListagemMovimentacoesMB extends TableEditMB<Movimentacao> implement
 	private static final long serialVersionUID = 1L;
 	
 	@Inject MovimentacaoBC movimentacaoBC;
+	@Inject EstoqueBC estoqueBC;
 	@Inject ProdutoBC produtoBC;
 	private boolean isDespesa;
 	private List<Produto> produtos;
@@ -41,7 +44,15 @@ public class ListagemMovimentacoesMB extends TableEditMB<Movimentacao> implement
 	
 	@Override
 	protected String getItemDescription(Movimentacao movimentacao){
-		return movimentacao.getDescricao();
+		String descricao = "";
+		if(movimentacao.isVenda()){
+			descricao += "Venda \"";
+		}
+		else{
+			descricao += "Despesa \"";
+		}
+		descricao+= movimentacao.getDescricao() + "\"";
+		return descricao;
 	}
 	
 	@Override
@@ -68,10 +79,18 @@ public class ListagemMovimentacoesMB extends TableEditMB<Movimentacao> implement
 	}
 	
 	public List<Produto> getProdutos(){
-		if(produtos==null) produtos = produtoBC.getProdutos();
+		Movimentacao movimentacao = getEditado();
+		if(movimentacao.isVenda() && movimentacao.getLocalidade() != null){
+			produtos = estoqueBC.findByLugar(movimentacao.getLocalidade());
+		}
+		else produtos = produtoBC.getProdutos();
 		return produtos;
 	}
 
+	public List<Localidade> getLocalidades(){
+		return movimentacaoBC.getLocalidades();
+	}
+	
 	
 
 	

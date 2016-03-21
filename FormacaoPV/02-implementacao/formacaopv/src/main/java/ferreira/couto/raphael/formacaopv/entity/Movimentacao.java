@@ -1,29 +1,22 @@
 package ferreira.couto.raphael.formacaopv.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 
 @Entity
-@SequenceGenerator(name="movimentacao_sequence", sequenceName="movimentacao_sequence")
-public class Movimentacao implements Serializable{
+public class Movimentacao extends BaseEntity{
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue(generator="movimentacao_sequence", strategy=GenerationType.SEQUENCE)
-	private int id;
 	private String descricao;
 	private Date data = new Date();
 	private double valor;
 	private boolean venda;
 	@ManyToOne
 	private Produto produto;
+	@ManyToOne
+	private Localidade localidade;
 
 	public String getDescricao() {
 		return descricao;
@@ -49,14 +42,6 @@ public class Movimentacao implements Serializable{
 		this.valor = valor;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public Produto getProduto() {
 		return produto;
 	}
@@ -71,5 +56,13 @@ public class Movimentacao implements Serializable{
 
 	public void setVenda(boolean venda) {
 		this.venda = venda;
+	}
+
+	public Localidade getLocalidade() {
+		return localidade;
+	}
+
+	public void setLocalidade(Localidade localidade) {
+		this.localidade = localidade;
 	}
 }

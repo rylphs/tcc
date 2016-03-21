@@ -74,7 +74,7 @@ public class ListagemProdutoMB extends TableEditMB<Produto> implements Serializa
 	
 	@Override
 	protected String getItemDescription(Produto produto){
-		return produto.getNome();
+		return "Produto \"" +produto.getNome() + "\"";
 	}
 	
 	public List<Imposto> getImpostos(){

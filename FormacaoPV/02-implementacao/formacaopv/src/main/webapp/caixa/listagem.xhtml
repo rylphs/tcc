@@ -24,33 +24,54 @@
 				</p:outputPanel>
 			</p:column>
 			<p:column headerText="Valor">
-				<h:outputText value="#{item.valor}" styleClass="#{item.venda? 'negative':'positive'}"/>
+				<h:outputText value="#{item.valor}" styleClass="#{item.venda? 'positive':'negative'}"/>
 			</p:column>
 
 			<f:facet name="dialogContent">
 				<div class="ui-grid-row">
 					<p:selectOneRadio styleClass="ui-grid-col-3" id="tipo"
 						value="#{listagemMovimentacoesMB.editado.venda}">
-						<f:selectItem itemLabel="Venda" itemValue="#{false}" />
-						<f:selectItem itemLabel="Despesa" itemValue="#{true}" />
+						<f:selectItem itemLabel="Venda" itemValue="#{true}" />
+						<f:selectItem itemLabel="Despesa" itemValue="#{false}" />
+						<p:ajax update="estoqueData"/>
 					</p:selectOneRadio>
+					
+					<p:outputLabel value="Descricao:"
+						styleClass="ui-grid-col-2 input-label" />
+					<p:inputText value="#{listagemMovimentacoesMB.editado.descricao}"
+						size="50" styleClass="ui-grid-col-7" />
+				</div>
+
+				<p:outputPanel id="estoqueData">
+				<div class="ui-grid-row">
+					<p:outputLabel value="Localidade:"
+						styleClass="ui-grid-col-3 input-label" />
+					<p:selectOneMenu converter="entity-converter"
+						label="Localidade"
+						value="#{listagemMovimentacoesMB.editado.localidade}" 
+						disabled="#{!listagemMovimentacoesMB.editado.venda}"
+						required="#{listagemMovimentacoesMB.editado.venda}">
+						<f:selectItem noSelectionOption="true"
+							itemLabel="Selecionar Localidade" itemValue="#{null}"/>
+						<f:selectItems value="#{listagemMovimentacoesMB.localidades}"
+							var="localidade" itemLabel="#{localidade.nome}"  />
+						<p:ajax update="estoqueData"/>
+					</p:selectOneMenu>
+				
 					<p:outputLabel value="Produto:"
 						styleClass="ui-grid-col-3 input-label" />
 					<p:selectOneMenu converter="entity-converter"
-						value="#{listagemMovimentacoesMB.editado.produto}">
+					    label="Produto"
+						value="#{listagemMovimentacoesMB.editado.produto}"
+						disabled="#{listagemMovimentacoesMB.editado.venda and listagemMovimentacoesMB.editado.localidade==null}"
+						required="#{listagemMovimentacoesMB.editado.venda}">
 						<f:selectItem noSelectionOption="true"
 							itemLabel="Selecionar Produto" itemValue="#{null}"/>
 						<f:selectItems value="#{listagemMovimentacoesMB.produtos}"
 							var="produto" itemLabel="#{produto.nome}"  />
 					</p:selectOneMenu>
 				</div>
-
-				<div class="ui-grid-row">
-					<p:outputLabel value="Descricao:"
-						styleClass="ui-grid-col-3 input-label" />
-					<p:inputText value="#{listagemMovimentacoesMB.editado.descricao}"
-						size="50" styleClass="ui-grid-col-9" />
-				</div>
+				</p:outputPanel>
 
 				<div class="ui-grid-row">
 					<p:outputLabel value="Data: "

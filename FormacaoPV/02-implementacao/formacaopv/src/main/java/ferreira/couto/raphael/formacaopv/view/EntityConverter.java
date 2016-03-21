@@ -1,6 +1,5 @@
 package ferreira.couto.raphael.formacaopv.view;
 
-import java.lang.reflect.Field;
 import java.util.Map;
 
 import javax.faces.component.UIComponent;
@@ -8,7 +7,9 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@FacesConverter(value="entity-converter")
+import ferreira.couto.raphael.formacaopv.entity.BaseEntity;
+
+@FacesConverter(value="entity-converter", forClass=BaseEntity.class)
 public class EntityConverter implements Converter{
 	@Override
 	public Object getAsObject(FacesContext ctx, UIComponent component, String value) {  
@@ -20,12 +21,13 @@ public class EntityConverter implements Converter{
   
 	@Override
     public String getAsString(FacesContext ctx, UIComponent component, Object value) {  
-  
+		if(!(value instanceof BaseEntity)) return (String) value;
+		
         if (value != null  
                 && !"".equals(value)) {  
-            Object entity = value;  
+            BaseEntity entity = (BaseEntity) value;  
             this.addAttribute(component, entity);  
-            Integer codigo = getId(entity);  
+            Long codigo = entity.getId();  
             if (codigo != null) {  
                 return String.valueOf(codigo);  
             }  
@@ -33,22 +35,11 @@ public class EntityConverter implements Converter{
   
         return (String) value;  
     }
-	
-	private Integer getId(Object o){
-		try {
-			Field id = o.getClass().getDeclaredField("id");
-			id.setAccessible(true);
-			return (Integer) id.get(o);
-		} catch (NoSuchFieldException | SecurityException 
-				| IllegalArgumentException | IllegalAccessException e) {
-			return null;
-		}
-	}
   
-    private void addAttribute(UIComponent component,Object o) {
-    	Integer id = getId(o);
+    private void addAttribute(UIComponent component, BaseEntity entity) {
+    	Long id = entity.getId();
     	if(id == null) return;
-        this.getAttributesFrom(component).put(id.toString(), o);  
+        this.getAttributesFrom(component).put(id.toString(), entity);  
     }  
   
     private Map<String, Object> getAttributesFrom(UIComponent component) {  

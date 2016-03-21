@@ -8,29 +8,38 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <composite:interface componentType="ferreira.couto.raphael.pick-select">
-	<composite:attribute name="pickList"/>
-	<composite:attribute name="completeList"/>
-	<composite:attribute name="labelProperty"/>
+	<composite:attribute name="pickList" required="true"/>
+	<composite:attribute name="selectList" required="true"/>
+	<composite:attribute name="labelProperty" required="true"/>
+	<composite:attribute name="noOptionText" default="Select..."/>
 </composite:interface>
 <composite:implementation >
 	
-	<h:form id="frm-select-list">
-		<p:outputPanel id="pickList">
-			<ui:repeat var="item" value="#{cc.attrs.completeList}">
-				<span class="pick-item">
-					<p:outputLabel styleClass="pick-item-label" value="#{item[cc.attrs.labelProperty]}"/> 
-					<p:commandButton action="#{cc.removeItem()}"
-						update="#{cc.attrs.id}:frm-select-list:pickList" 
-						styleClass="pick-item-remove" icon="fa fa-close">
-						<f:setPropertyActionListener target="#{cc.toDelete}" value="#{item}" />
-					</p:commandButton>
-				</span>
-			</ui:repeat>
-			<p:selectOneMenu converter="entity-converter" value="#{cc.selected}">
-				<f:selectItems value="#{cc.remainingItems}" var="item" itemLabel="#{item[cc.attrs.labelProperty]}" itemValue="#{item}"/>
-				<p:ajax event="change" listener="#{cc.addItem}" process="@this"/>
-			</p:selectOneMenu>
-		</p:outputPanel>
+	<h:form id="frm-pick-select">
+		<p:outputPanel id="pnl-pick-select">
+				
+				<div class="pick-select-select">
+				<p:selectOneMenu converter="entity-converter" value="#{cc.selected}">
+					<f:selectItem itemLabel="#{cc.attrs.noOptionText}" itemValue="#{null}" noSelectionOption="true"></f:selectItem>			
+					<f:selectItems value="#{cc.attrs.selectList}" var="item" itemLabel="#{item[cc.attrs.labelProperty]}" itemValue="#{item}"/>
+					<p:ajax listener="#{cc.addItem()}" update="#{cc.attrs.id}:frm-pick-select:pnl-pick-select"/>
+				</p:selectOneMenu>
+				</div>
+				
+				<ui:repeat var="item" value="#{cc.attrs.pickList}">
+					<div class="pick-select-item">
+						<span>
+							<p:outputLabel styleClass="pick-item-label" value="#{item[cc.attrs.labelProperty]}"/> 
+							<p:commandLink style="width: 16px; height: 16px; font-size: 16px"  action="#{cc.removeItem()}"
+								update="#{cc.attrs.id}:frm-pick-select:pnl-pick-select" 
+								styleClass="pick-item-remove">
+								<span class="fa fa-close"></span>
+								<f:setPropertyActionListener target="#{cc.toDelete}" value="#{item}" />
+							</p:commandLink>
+						</span>
+					</div>
+				</ui:repeat>
+		</p:outputPanel> 
 	</h:form>
 </composite:implementation>
 

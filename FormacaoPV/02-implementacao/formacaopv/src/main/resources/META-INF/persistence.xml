@@ -11,11 +11,13 @@
         <class>ferreira.couto.raphael.formacaopv.entity.Produto</class>
         <class>ferreira.couto.raphael.formacaopv.entity.Movimentacao</class>
         <class>ferreira.couto.raphael.formacaopv.entity.Imposto</class>
+        <class>ferreira.couto.raphael.formacaopv.entity.Estoque</class>
+        <class>ferreira.couto.raphael.formacaopv.entity.Localidade</class>
         <properties>
         	 <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
- 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/produtopv" ></property>
- 			<property name="javax.persistence.jdbc.user" value="produtopv" />
- 			<property name="javax.persistence.jdbc.password" value="produtopv" />
+ 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/fpvdb" ></property>
+ 			<property name="javax.persistence.jdbc.user" value="fpvuser" />
+ 			<property name="javax.persistence.jdbc.password" value="fpvuser" />
         
 <!--             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver" /> -->
 <!--             <property name="hibernate.connection.username" value="produtopv" /> -->

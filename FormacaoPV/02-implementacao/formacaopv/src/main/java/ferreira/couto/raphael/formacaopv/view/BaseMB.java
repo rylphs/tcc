@@ -5,6 +5,7 @@ import static javax.faces.application.FacesMessage.SEVERITY_INFO;
 import static javax.faces.application.FacesMessage.SEVERITY_WARN;
 
 import java.text.MessageFormat;
+import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 import javax.faces.application.FacesMessage;
@@ -25,13 +26,25 @@ public abstract class BaseMB {
 	
 	private String getMessage(Funcionalidade feature, String action){
 		String key = feature.toString() + "." + action;
-		return getBundle().getString(key);
+		try{
+			return getBundle().getString(key);
+		}
+		catch(MissingResourceException e){
+			key = "geral." + action;
+			return getBundle().getString(key);
+		}
 	}
 	
 	private String getMessage(Funcionalidade feature, String action, Object... args){
 		String key = feature.toString() + "." + action;
-		String msg = getBundle().getString(key);
-		return MessageFormat.format(msg, args);
+		try{
+			String msg = getBundle().getString(key);
+			return MessageFormat.format(msg, args);
+		}
+		catch(MissingResourceException e){
+			key = "geral." + action;
+			return  MessageFormat.format(getBundle().getString(key), args);
+		}
 	}
 	
 	protected void info(Funcionalidade feature, String action){
