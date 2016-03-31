@@ -1,10 +1,8 @@
-package ferreira.couto.raphael.formacaopv.exception;
+package ferreira.couto.raphael.formacaopv.domain.comum;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import ferreira.couto.raphael.formacaopv.enums.Funcionalidade;
 
 public class FormacaoPVException extends Exception{
 	private static final long serialVersionUID = 1L;

@@ -1,6 +1,8 @@
-package ferreira.couto.raphael.formacaopv.entity;
+package ferreira.couto.raphael.formacaopv.domain.preco;
 
 import javax.persistence.Entity;
+
+import ferreira.couto.raphael.formacaopv.domain.comum.BaseEntity;
 
 @Entity
 public class Imposto extends BaseEntity {

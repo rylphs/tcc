@@ -1,4 +1,4 @@
-package ferreira.couto.raphael.formacaopv.business;
+package ferreira.couto.raphael.formacaopv.domain.venda;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,13 +7,11 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import ferreira.couto.raphael.formacaopv.entity.Estoque;
-import ferreira.couto.raphael.formacaopv.entity.Localidade;
-import ferreira.couto.raphael.formacaopv.entity.Produto;
-import ferreira.couto.raphael.formacaopv.persistence.EstoqueDAO;
-import ferreira.couto.raphael.formacaopv.persistence.LocalidadeDAO;
+import ferreira.couto.raphael.formacaopv.domain.preco.Produto;
+import ferreira.couto.raphael.formacaopv.infra.venda.EstoqueDAO;
+import ferreira.couto.raphael.formacaopv.infra.venda.LocalidadeDAO;
 
-public class EstoqueBC {
+public class RepositorioEstoque {
 	@Inject private EstoqueDAO estoqueDAO;
 	@Inject private LocalidadeDAO localidadeDAO;
 

@@ -7,23 +7,23 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
-import ferreira.couto.raphael.formacaopv.business.EstoqueBC;
-import ferreira.couto.raphael.formacaopv.business.MovimentacaoBC;
-import ferreira.couto.raphael.formacaopv.business.ProdutoBC;
-import ferreira.couto.raphael.formacaopv.entity.Localidade;
-import ferreira.couto.raphael.formacaopv.entity.Movimentacao;
-import ferreira.couto.raphael.formacaopv.entity.Produto;
-import ferreira.couto.raphael.formacaopv.enums.Funcionalidade;
-import ferreira.couto.raphael.formacaopv.exception.FormacaoPVException;
+import ferreira.couto.raphael.formacaopv.domain.comum.FormacaoPVException;
+import ferreira.couto.raphael.formacaopv.domain.comum.Funcionalidade;
+import ferreira.couto.raphael.formacaopv.domain.preco.Produto;
+import ferreira.couto.raphael.formacaopv.domain.preco.RepositorioProduto;
+import ferreira.couto.raphael.formacaopv.domain.venda.RepositorioEstoque;
+import ferreira.couto.raphael.formacaopv.domain.venda.Localidade;
+import ferreira.couto.raphael.formacaopv.domain.venda.Movimentacao;
+import ferreira.couto.raphael.formacaopv.domain.venda.RepositorioMovimentacao;
 
 @ViewScoped
 @ManagedBean
 public class ListagemMovimentacoesMB extends TableEditMB<Movimentacao> implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	@Inject MovimentacaoBC movimentacaoBC;
-	@Inject EstoqueBC estoqueBC;
-	@Inject ProdutoBC produtoBC;
+	@Inject RepositorioMovimentacao movimentacaoBC;
+	@Inject RepositorioEstoque estoqueBC;
+	@Inject RepositorioProduto produtoBC;
 	private boolean isDespesa;
 	private List<Produto> produtos;
 	

@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
-import ferreira.couto.raphael.formacaopv.enums.Funcionalidade;
-import ferreira.couto.raphael.formacaopv.exception.FormacaoPVException;
+import ferreira.couto.raphael.formacaopv.domain.comum.FormacaoPVException;
+import ferreira.couto.raphael.formacaopv.domain.comum.Funcionalidade;
 
 public abstract class TableEditMB<T> extends BaseMB {
 	private enum Action{ EDIT, NEW}

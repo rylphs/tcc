@@ -8,14 +8,14 @@
       
    <persistence-unit name="default" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <class>ferreira.couto.raphael.formacaopv.entity.Produto</class>
-        <class>ferreira.couto.raphael.formacaopv.entity.Movimentacao</class>
-        <class>ferreira.couto.raphael.formacaopv.entity.Imposto</class>
-        <class>ferreira.couto.raphael.formacaopv.entity.Estoque</class>
-        <class>ferreira.couto.raphael.formacaopv.entity.Localidade</class>
+        <class>ferreira.couto.raphael.formacaopv.domain.preco.Produto</class>
+        <class>ferreira.couto.raphael.formacaopv.domain.venda.Movimentacao</class>
+        <class>ferreira.couto.raphael.formacaopv.domain.preco.Imposto</class>
+        <class>ferreira.couto.raphael.formacaopv.domain.venda.Estoque</class>
+        <class>ferreira.couto.raphael.formacaopv.domain.venda.Localidade</class>
         <properties>
         	 <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
- 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/fpvdb" ></property>
+ 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/fpvdb_ddd" ></property>
  			<property name="javax.persistence.jdbc.user" value="fpvuser" />
  			<property name="javax.persistence.jdbc.password" value="fpvuser" />
         

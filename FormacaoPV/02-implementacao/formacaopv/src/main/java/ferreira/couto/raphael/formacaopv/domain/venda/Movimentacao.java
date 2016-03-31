@@ -1,9 +1,12 @@
-package ferreira.couto.raphael.formacaopv.entity;
+package ferreira.couto.raphael.formacaopv.domain.venda;
 
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+
+import ferreira.couto.raphael.formacaopv.domain.comum.BaseEntity;
+import ferreira.couto.raphael.formacaopv.domain.preco.Produto;
 
 @Entity
 public class Movimentacao extends BaseEntity{

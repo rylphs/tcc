@@ -6,16 +6,16 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
-import ferreira.couto.raphael.formacaopv.business.ImpostoBC;
-import ferreira.couto.raphael.formacaopv.entity.Imposto;
-import ferreira.couto.raphael.formacaopv.enums.Funcionalidade;
-import ferreira.couto.raphael.formacaopv.exception.FormacaoPVException;
+import ferreira.couto.raphael.formacaopv.domain.comum.FormacaoPVException;
+import ferreira.couto.raphael.formacaopv.domain.comum.Funcionalidade;
+import ferreira.couto.raphael.formacaopv.domain.preco.Imposto;
+import ferreira.couto.raphael.formacaopv.domain.preco.RepositorioImposto;
 
 
 @ManagedBean
 @ViewScoped
 public class ListagemImpostosMB extends TableEditMB<Imposto> {
-	@Inject private ImpostoBC impostoBC;
+	@Inject private RepositorioImposto impostoBC;
 	
 	@Override
 	protected List<Imposto> getListaFromBC() {

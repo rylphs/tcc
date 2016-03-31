@@ -1,4 +1,4 @@
-package ferreira.couto.raphael.formacaopv.enums;
+package ferreira.couto.raphael.formacaopv.domain.comum;
 
 public enum Funcionalidade {
 	PRODUTO, MOVIMENTACAO, IMPOSTO, ESTOQUE;

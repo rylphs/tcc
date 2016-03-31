@@ -1,4 +1,4 @@
-package ferreira.couto.raphael.formacaopv.persistence;
+package ferreira.couto.raphael.formacaopv.infra.comum;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;

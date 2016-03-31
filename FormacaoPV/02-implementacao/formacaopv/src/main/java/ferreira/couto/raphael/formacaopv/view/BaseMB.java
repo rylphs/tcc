@@ -11,8 +11,8 @@ import java.util.ResourceBundle;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-import ferreira.couto.raphael.formacaopv.enums.Funcionalidade;
-import ferreira.couto.raphael.formacaopv.exception.FormacaoPVException;
+import ferreira.couto.raphael.formacaopv.domain.comum.FormacaoPVException;
+import ferreira.couto.raphael.formacaopv.domain.comum.Funcionalidade;
 
 public abstract class BaseMB { 
 	private static ResourceBundle bundle;

@@ -1,13 +1,12 @@
-package ferreira.couto.raphael.formacaopv.business;
+package ferreira.couto.raphael.formacaopv.domain.preco;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-import ferreira.couto.raphael.formacaopv.entity.Imposto;
-import ferreira.couto.raphael.formacaopv.persistence.ImpostoDAO;
+import ferreira.couto.raphael.formacaopv.infra.preco.ImpostoDAO;
 
-public class ImpostoBC {
+public class RepositorioImposto {
 	@Inject ImpostoDAO impostoDAO;
 
 	public List<Imposto> getImpostos() {

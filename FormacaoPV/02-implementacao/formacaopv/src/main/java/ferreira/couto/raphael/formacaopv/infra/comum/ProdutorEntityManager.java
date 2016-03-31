@@ -1,4 +1,4 @@
-package ferreira.couto.raphael.formacaopv.persistence;
+package ferreira.couto.raphael.formacaopv.infra.comum;
 
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Disposes;

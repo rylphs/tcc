@@ -1,4 +1,4 @@
-package ferreira.couto.raphael.formacaopv.entity;
+package ferreira.couto.raphael.formacaopv.domain.comum;
 
 import javax.persistence.Entity;
 

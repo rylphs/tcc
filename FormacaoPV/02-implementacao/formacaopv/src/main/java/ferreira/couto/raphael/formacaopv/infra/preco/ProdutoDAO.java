@@ -1,4 +1,4 @@
-package ferreira.couto.raphael.formacaopv.persistence;
+package ferreira.couto.raphael.formacaopv.infra.preco;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import ferreira.couto.raphael.formacaopv.entity.Produto;
+import ferreira.couto.raphael.formacaopv.domain.preco.Produto;
 
 public class ProdutoDAO {
 	@Inject

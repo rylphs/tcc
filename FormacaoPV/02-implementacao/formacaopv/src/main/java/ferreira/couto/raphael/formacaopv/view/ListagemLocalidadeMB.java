@@ -6,15 +6,15 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
-import ferreira.couto.raphael.formacaopv.business.EstoqueBC;
-import ferreira.couto.raphael.formacaopv.entity.Localidade;
-import ferreira.couto.raphael.formacaopv.enums.Funcionalidade;
-import ferreira.couto.raphael.formacaopv.exception.FormacaoPVException;
+import ferreira.couto.raphael.formacaopv.domain.comum.FormacaoPVException;
+import ferreira.couto.raphael.formacaopv.domain.comum.Funcionalidade;
+import ferreira.couto.raphael.formacaopv.domain.venda.RepositorioEstoque;
+import ferreira.couto.raphael.formacaopv.domain.venda.Localidade;
 
 @ManagedBean
 @ViewScoped
 public class ListagemLocalidadeMB extends TableEditMB<Localidade> {
-	@Inject EstoqueBC estoqueBC;
+	@Inject RepositorioEstoque estoqueBC;
 
 	@Override
 	protected List<Localidade> getListaFromBC() {

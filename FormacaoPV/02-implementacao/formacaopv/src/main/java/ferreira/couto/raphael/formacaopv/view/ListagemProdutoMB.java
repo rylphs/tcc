@@ -8,13 +8,13 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
-import ferreira.couto.raphael.formacaopv.business.ImpostoBC;
-import ferreira.couto.raphael.formacaopv.business.ProdutoBC;
-import ferreira.couto.raphael.formacaopv.entity.Imposto;
-import ferreira.couto.raphael.formacaopv.entity.Produto;
-import ferreira.couto.raphael.formacaopv.enums.Funcionalidade;
-import ferreira.couto.raphael.formacaopv.exception.FormacaoPVException;
-import ferreira.couto.raphael.formacaopv.persistence.ProdutorEntityManager;
+import ferreira.couto.raphael.formacaopv.domain.comum.FormacaoPVException;
+import ferreira.couto.raphael.formacaopv.domain.comum.Funcionalidade;
+import ferreira.couto.raphael.formacaopv.domain.preco.Imposto;
+import ferreira.couto.raphael.formacaopv.domain.preco.RepositorioImposto;
+import ferreira.couto.raphael.formacaopv.domain.preco.Produto;
+import ferreira.couto.raphael.formacaopv.domain.preco.RepositorioProduto;
+import ferreira.couto.raphael.formacaopv.infra.comum.ProdutorEntityManager;
 
 @ViewScoped
 @ManagedBean
@@ -23,8 +23,8 @@ public class ListagemProdutoMB extends TableEditMB<Produto> implements Serializa
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@Inject private ProdutoBC produtoBC;
-	@Inject private ImpostoBC impostoBC;
+	@Inject private RepositorioProduto produtoBC;
+	@Inject private RepositorioImposto impostoBC;
 	
 	private Imposto impostoSelecionado;
 	private List<Imposto> impostos = new ArrayList<>();

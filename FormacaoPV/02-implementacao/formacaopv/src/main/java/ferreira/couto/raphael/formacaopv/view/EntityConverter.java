@@ -7,7 +7,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-import ferreira.couto.raphael.formacaopv.entity.BaseEntity;
+import ferreira.couto.raphael.formacaopv.domain.comum.BaseEntity;
 
 @FacesConverter(value="entity-converter", forClass=BaseEntity.class)
 public class EntityConverter implements Converter{

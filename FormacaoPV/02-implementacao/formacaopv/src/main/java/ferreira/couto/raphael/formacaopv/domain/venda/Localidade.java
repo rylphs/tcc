@@ -1,6 +1,8 @@
-package ferreira.couto.raphael.formacaopv.entity;
+package ferreira.couto.raphael.formacaopv.domain.venda;
 
 import javax.persistence.Entity;
+
+import ferreira.couto.raphael.formacaopv.domain.comum.BaseEntity;
 
 @Entity
 public class Localidade extends BaseEntity{
